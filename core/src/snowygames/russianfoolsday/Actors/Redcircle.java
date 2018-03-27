@@ -37,10 +37,14 @@ public class Redcircle {
         width = 480;
         height = 480;
         SCALE = -randomScale;
-        downBarrier = (Greencircle.getHeight()*5) / 8;
         setIdle();
 
     }
+
+    public void setDownBarrier(float downBarrier) {
+        this.downBarrier = downBarrier;
+    }
+
     public void setIdle() {
         width = 480;
         height = 480;

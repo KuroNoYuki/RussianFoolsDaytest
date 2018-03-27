@@ -74,6 +74,7 @@ public class PlayState extends State {
             downs[i] = new Matryoshkadown(textureEmptyDown,downPlace);
         }
         redcirc[1] = new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
+        redcirc[1].setDownBarrier(greencirc.getHeight() * 5 / 8);
         redcirctwo = redpool.get();
         redcirc[1].setFlying();
     }
@@ -91,14 +92,15 @@ public class PlayState extends State {
                         SCORE++;
                        if (SCORE % 5 == 0) {
                            redcirc[2] = new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
+                           redcirc[2].setDownBarrier(greencirc.getHeight() * 5 / 8);
                            redcirc[2].setFlying();
                        }
 
 
 
-                       if (Greencircle.getHeight() > 80) {
-                           Greencircle.setWidth(Greencircle.getWidth() - 10);
-                           Greencircle.setHeight(Greencircle.getHeight() - 10);
+                       if (greencirc.getHeight() > 80) {
+                           greencirc.setWidth(greencirc.getWidth() - 10);
+                           greencirc.setHeight(greencirc.getHeight() - 10);
                         }
                        if (++currentHead == heads.length - 1) currentHead = 0;
                        foregroundHead(currentHead);
