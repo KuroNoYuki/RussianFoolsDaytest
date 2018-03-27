@@ -1,13 +1,9 @@
-package snowygames.russianfoolsday.Actors;
+package snowygames.russianfoolsday.circles;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 
-/**
- * Created by eshas on 27.03.2018.
- */
-
-public class Yellowcircle extends Circle {
+public class Yellowcircle extends snowygames.russianfoolsday.circles.Circle {
     private Texture yellowcircle;
     public Yellowcircle (float x , float y){
         position = new Vector3(x,y,0);

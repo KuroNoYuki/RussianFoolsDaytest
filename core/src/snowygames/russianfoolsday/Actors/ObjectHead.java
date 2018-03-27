@@ -2,7 +2,6 @@ package snowygames.russianfoolsday.Actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
-import com.sun.media.sound.RIFFInvalidDataException;
 
 import snowygames.russianfoolsday.RussianFoolsDay;
 
@@ -45,7 +44,7 @@ public class ObjectHead {
     }
     public void update(){
         while (position.y < RussianFoolsDay.HEIGHT){
-            position.add(0, - Redcircle.SCALE,0);
+            position.add(0, - snowygames.russianfoolsday.circles.Redcircle.SCALE,0);
             return;
         }
         if ((position.y)+height> RussianFoolsDay.HEIGHT) {

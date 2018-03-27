@@ -8,21 +8,13 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Timer;
 
-import java.util.Iterator;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import snowygames.russianfoolsday.Actors.Greencircle;
+import snowygames.russianfoolsday.circles.Greencircle;
 import snowygames.russianfoolsday.Actors.Matryoshka;
 import snowygames.russianfoolsday.Actors.Matryoshkadown;
-import snowygames.russianfoolsday.Actors.ObjectHead;
-import snowygames.russianfoolsday.Actors.Redcircle;
+import snowygames.russianfoolsday.circles.Redcircle;
 import snowygames.russianfoolsday.Actors.Redcirclepool;
-import snowygames.russianfoolsday.Actors.Yellowcircle;
+import snowygames.russianfoolsday.circles.Yellowcircle;
 import snowygames.russianfoolsday.RussianFoolsDay;
 
 import static snowygames.russianfoolsday.RussianFoolsDay.WIDTH;

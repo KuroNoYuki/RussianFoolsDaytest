@@ -1,18 +1,12 @@
-package snowygames.russianfoolsday.Actors;
+package snowygames.russianfoolsday.circles;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import snowygames.russianfoolsday.Actors.Greencircle;
+
 import java.util.Random;
 
 import snowygames.russianfoolsday.RussianFoolsDay;
-
-/**
- * Created by eshas on 08.03.2018.
- */
 
 public class Redcircle {
     private enum State{IDLE, FLYING}

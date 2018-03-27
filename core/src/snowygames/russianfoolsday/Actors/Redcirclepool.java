@@ -13,11 +13,11 @@ import static snowygames.russianfoolsday.RussianFoolsDay.WIDTH;
  */
 
 public class Redcirclepool {
-    private final ArrayList<Redcircle> free = new ArrayList<Redcircle>();
+    private final ArrayList<snowygames.russianfoolsday.circles.Redcircle> free = new ArrayList<snowygames.russianfoolsday.circles.Redcircle>();
 
-    public Redcircle get(){
+    public snowygames.russianfoolsday.circles.Redcircle get(){
         if(free.isEmpty()){
-            return new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
+            return new snowygames.russianfoolsday.circles.Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
         }else {
             return free.remove((free.size() - 1));
 
@@ -35,7 +35,7 @@ public class Redcirclepool {
     public void dispose(){
         this.dispose();
     }
-    public void free(Redcircle obj){
+    public void free(snowygames.russianfoolsday.circles.Redcircle obj){
         free.add(obj);
     }
 

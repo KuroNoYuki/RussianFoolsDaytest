@@ -41,7 +41,7 @@ public class ObjectDown {
     }
     public void update(float dt){
         while (position.y < RussianFoolsDay.HEIGHT){
-            position.add(0, Redcircle.SCALE,0);
+            position.add(0, snowygames.russianfoolsday.circles.Redcircle.SCALE,0);
         }
     }
     public void dispose(){
