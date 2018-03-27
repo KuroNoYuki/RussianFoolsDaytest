@@ -11,7 +11,7 @@ import snowygames.russianfoolsday.RussianFoolsDay;
 
 public class Greencircle {
     private Vector3 position;
-    private static float width,height;
+    private float width,height;
     private Texture greencircle;
 
     public Greencircle (float x,float y){
@@ -31,21 +31,21 @@ public class Greencircle {
         return position;
     }
 
-    public static float getWidth() {
+    public  float getWidth() {
         return width;
     }
 
-    public static float getHeight() {
+    public float getHeight() {
         return height;
     }
-    public static void setHeight(float newHeight){
+    public void setHeight(float newHeight){
         height =newHeight;
     }
-    public static void setWidth(float newWidth){
+    public void setWidth(float newWidth){
         width = newWidth;
     }
 
-    public Texture getGreencircle() {
+    public Texture getTextureGreencircle() {
         return greencircle;
     }
 }

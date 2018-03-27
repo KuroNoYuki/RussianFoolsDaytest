@@ -211,7 +211,7 @@ public class PlayState extends State {
         color.a = oldAlpha * scaleone;
         sb.setColor(color);
         //redcirctwo.draw(sb);
-        sb.draw(greencirc.getGreencircle(),greencirc.getPosition().x - (greencirc.getWidth()/2),greencirc.getPosition().y -( greencirc.getHeight()/2),greencirc.getWidth(),greencirc.getHeight());
+        sb.draw(greencirc.getTextureGreencircle(),greencirc.getPosition().x - (greencirc.getWidth()/2),greencirc.getPosition().y -( greencirc.getHeight()/2),greencirc.getWidth(),greencirc.getHeight());
         color.a =oldAlpha;
         sb.setColor(color);
         //redcirctwo.draw(sb);

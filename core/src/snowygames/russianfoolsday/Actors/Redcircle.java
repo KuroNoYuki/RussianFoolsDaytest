@@ -53,7 +53,7 @@ public class Redcircle {
         return false;}
     }
 
-    public Texture getRedcircle() {
+    public Texture getTextureRedcircle() {
         return redcircle;
     }
     public int getSCALE(){
