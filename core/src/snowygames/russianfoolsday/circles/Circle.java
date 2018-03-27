@@ -1,14 +1,23 @@
 package snowygames.russianfoolsday.circles;
 
-import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
+@SuppressWarnings("WeakerAccess")
 public class Circle {
 
-    protected Vector3 position;
-    protected float width,height;
+    final Vector2 pos = new Vector2();
+    float width;
+    float height;
+    Texture texture;
 
-    public Vector3 getPosition() {
-        return position;
+    public Circle(Texture texture) {
+        this.texture = texture;
+    }
+
+    public Vector2 getPos() {
+        return pos;
     }
 
     public  float getWidth() {
@@ -19,12 +28,23 @@ public class Circle {
         return height;
     }
 
-    public void setHeight(float newHeight){
-        height =newHeight;
+    public float getLeft() {
+        return pos.x - width / 2f;
     }
 
-    public void setWidth(float newWidth){
-        width = newWidth;
+    public float getBottom() {
+        return pos.y - height / 2f;
     }
 
+    public void setHeight(float height){
+        this.height = height;
+    }
+
+    public void setWidth(float width){
+        this.width = width;
+    }
+
+    public void draw(SpriteBatch batch) {
+        batch.draw(texture, getLeft(), getBottom(), width, height);
+    }
 }

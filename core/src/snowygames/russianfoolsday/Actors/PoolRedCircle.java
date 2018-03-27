@@ -1,10 +1,12 @@
 package snowygames.russianfoolsday.Actors;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 
 import snowygames.russianfoolsday.RussianFoolsDay;
+import snowygames.russianfoolsday.circles.Redcircle;
 
 import static snowygames.russianfoolsday.RussianFoolsDay.WIDTH;
 
@@ -12,13 +14,19 @@ import static snowygames.russianfoolsday.RussianFoolsDay.WIDTH;
  * Created by eshas on 26.03.2018.
  */
 
-public class Redcirclepool {
-    private final ArrayList<snowygames.russianfoolsday.circles.Redcircle> free = new ArrayList<snowygames.russianfoolsday.circles.Redcircle>();
+public class PoolRedCircle {
 
-    public snowygames.russianfoolsday.circles.Redcircle get(){
+    private Texture texture;
+    private final ArrayList<Redcircle> free = new ArrayList<snowygames.russianfoolsday.circles.Redcircle>();
+
+    public PoolRedCircle(Texture texture) {
+        this.texture = texture;
+    }
+
+    public Redcircle get(){
         if(free.isEmpty()){
-            return new snowygames.russianfoolsday.circles.Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
-        }else {
+            return new Redcircle(texture, (WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
+        } else {
             return free.remove((free.size() - 1));
 
         }
