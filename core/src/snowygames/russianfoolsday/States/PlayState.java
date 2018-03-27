@@ -11,6 +11,10 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 
 import java.util.Iterator;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import snowygames.russianfoolsday.Actors.Greencircle;
 import snowygames.russianfoolsday.Actors.Matryoshka;
@@ -18,6 +22,7 @@ import snowygames.russianfoolsday.Actors.Matryoshkadown;
 import snowygames.russianfoolsday.Actors.ObjectHead;
 import snowygames.russianfoolsday.Actors.Redcircle;
 import snowygames.russianfoolsday.Actors.Redcirclepool;
+import snowygames.russianfoolsday.Actors.Yellowcircle;
 import snowygames.russianfoolsday.RussianFoolsDay;
 
 import static snowygames.russianfoolsday.RussianFoolsDay.WIDTH;
@@ -31,6 +36,7 @@ public class PlayState extends State {
     private Redcircle[] redcirc = new Redcircle[5];
     private Redcircle redcirctwo;
     private Greencircle greencirc;
+    private Yellowcircle yellowcircle;
     public static Preferences bestscore;
     public static int SCORE;
     BitmapFont yourScore;
@@ -51,8 +57,8 @@ public class PlayState extends State {
    // private Texture redcircle;
     private Array<Redcircle> redcircles;
     private Redcirclepool redpool = new Redcirclepool();
+    private float secondbarrier;
     private float downheight;
-
     public PlayState(GameStateManager gsm) {
         super(gsm);
         //redcircle = new Texture("redcircle.png");
@@ -61,6 +67,7 @@ public class PlayState extends State {
         //redcirc[1] = new Redcircle(redcircle,(WIDTH /2),(RussianFoolsDay.HEIGHT/2));
         camera.setToOrtho(false, WIDTH,RussianFoolsDay.HEIGHT);
         greencirc = new Greencircle((WIDTH /2),(RussianFoolsDay.HEIGHT/2));
+        yellowcircle = new Yellowcircle((WIDTH/2),(RussianFoolsDay.HEIGHT/2));
         SCORE = 0;
         yourScore = new BitmapFont();
         yourScore.setColor(1,0.2f,0,1);
@@ -75,6 +82,7 @@ public class PlayState extends State {
         }
         redcirc[1] = new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
         redcirc[1].setDownBarrier(greencirc.getHeight() * 5 / 8);
+        redcirc[1].setSecondBarrier(greencirc.getHeight()*5 / 8);
         redcirctwo = redpool.get();
         redcirc[1].setFlying();
     }
@@ -86,21 +94,27 @@ public class PlayState extends State {
             for (int i = 0; i<redcirc.length; i++){
                 if (redcirc[i]!= null){
                     forcurrentredcirc();
-                    if (downheight < greencirc.getHeight()) {
+                    if (redcirc[1].getHeight() < greencirc.getHeight()) {
                         redcirc[i].setIdle();
                         //if ( i==1)redcirc[i] = new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
                         SCORE++;
-                       if (SCORE % 5 == 0) {
+                        if(redcirc[1].getHeight() < greencirc.getHeight() & redcirc[1].getHeight()>= redcirc[1].getSecondBarrier()){
+                            SCORE = SCORE +2;
+                        }
+                       /*if (SCORE % 5 == 0) {
                            redcirc[2] = new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
                            redcirc[2].setDownBarrier(greencirc.getHeight() * 5 / 8);
                            redcirc[2].setFlying();
                        }
-
+*/
 
 
                        if (greencirc.getHeight() > 80) {
                            greencirc.setWidth(greencirc.getWidth() - 10);
                            greencirc.setHeight(greencirc.getHeight() - 10);
+                           yellowcircle.setHeight(yellowcircle.getHeight() -10);
+                           yellowcircle.setWidth(yellowcircle.getWidth() - 10);
+                           //redcirc[1].setDownBarrier(greencirc.getHeight() * 5 / 8);
                         }
                        if (++currentHead == heads.length - 1) currentHead = 0;
                        foregroundHead(currentHead);
@@ -171,11 +185,19 @@ public class PlayState extends State {
         int score = SCORE;
         return score;
     }
+    public void getRedcirctwo(){
+        redcirc[2] = new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
+        redcirc[2].setDownBarrier(greencirc.getHeight() * 5 / 8);
+        redcirc[1].setSecondBarrier(greencirc.getHeight()*5 / 8);
+        redcirc[2].setFlying();
+    }
     @Override
     public void update(float dt) {
+        redcirc[1].setDownBarrier(greencirc.getHeight() * 5 / 8);
         /*if(redcirc[1].isIdle() == true ){
             redcirc[1].setFlying();
         }*/
+
         for(int i = 0; i< redcirc.length; i++){
         if(redcirc[i]!= null) redcirc[1].update(dt);}
 
@@ -197,8 +219,8 @@ public class PlayState extends State {
            // gsm.push(new PlayAgainState(gsm));
             //Gdx.input.vibrate(200);
         }
+         }
 
-    }
 
     @Override
     public void render(SpriteBatch sb) {
@@ -214,6 +236,8 @@ public class PlayState extends State {
         sb.setColor(color);
         //redcirctwo.draw(sb);
         sb.draw(greencirc.getTextureGreencircle(),greencirc.getPosition().x - (greencirc.getWidth()/2),greencirc.getPosition().y -( greencirc.getHeight()/2),greencirc.getWidth(),greencirc.getHeight());
+        sb.draw(yellowcircle.getTextureYellowcircle(),yellowcircle.getPosition().x - (yellowcircle.getWidth()/2),yellowcircle.getPosition().y -( yellowcircle.getHeight()/2),yellowcircle.getWidth(),yellowcircle.getHeight());
+
         color.a =oldAlpha;
         sb.setColor(color);
         //redcirctwo.draw(sb);

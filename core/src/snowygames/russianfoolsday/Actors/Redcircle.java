@@ -25,6 +25,7 @@ public class Redcircle {
     private Random random = new Random();
     int randomScale = random.nextInt(9) +4;
     private float downBarrier;
+    private float secondBarrier;
 
 
     public Redcircle(float x, float y){
@@ -44,7 +45,12 @@ public class Redcircle {
     public void setDownBarrier(float downBarrier) {
         this.downBarrier = downBarrier;
     }
-
+    public void setSecondBarrier(float secondBarrier){
+        this.secondBarrier =secondBarrier;
+    }
+    public float getSecondBarrier(){
+        return secondBarrier;
+    }
     public void setIdle() {
         width = 480;
         height = 480;

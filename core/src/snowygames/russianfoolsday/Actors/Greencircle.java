@@ -9,16 +9,16 @@ import snowygames.russianfoolsday.RussianFoolsDay;
  * Created by eshas on 10.03.2018.
  */
 
-public class Greencircle {
-    private Vector3 position;
-    private float width,height;
+public class Greencircle extends Circle {
+   /* private Vector3 position;
+    private float width,height;*/
     private Texture greencircle;
 
     public Greencircle (float x,float y){
         position = new Vector3(x,y,0);
         greencircle = new Texture("greening.png");
-        position.x =(RussianFoolsDay.WIDTH /2);
-        position.y = (RussianFoolsDay.HEIGHT/2);
+        //position.x =(RussianFoolsDay.WIDTH /2);
+        //position.y = (RussianFoolsDay.HEIGHT/2);
 
         height = 160;
         width = height;
@@ -27,7 +27,7 @@ public class Greencircle {
         greencircle.dispose();
     }
 
-    public Vector3 getPosition() {
+    /*public Vector3 getPosition() {
         return position;
     }
 
@@ -43,7 +43,7 @@ public class Greencircle {
     }
     public void setWidth(float newWidth){
         width = newWidth;
-    }
+    }*/
 
     public Texture getTextureGreencircle() {
         return greencircle;
