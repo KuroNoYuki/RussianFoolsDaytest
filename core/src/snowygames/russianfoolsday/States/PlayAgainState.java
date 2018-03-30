@@ -34,7 +34,7 @@ public class PlayAgainState extends State {
 
     public PlayAgainState(GameStateManager gsm) {
         super(gsm);
-        background = new Texture("bg.png");
+        background = new Texture("newBackGround.png");
         playBtn = new Texture("playbtn.png");
         camera.setToOrtho(false, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
         yourScore = new BitmapFont();
@@ -83,7 +83,7 @@ public class PlayAgainState extends State {
             message.draw(sb, "Well done Senpai!", (RussianFoolsDay.WIDTH/2) - (playBtn.getWidth()/2) - 55 ,550);
         }
         if (score>14){
-            message.draw(sb, "Sorry", (RussianFoolsDay.WIDTH/2) - (playBtn.getWidth()/2)+ 20  ,550);
+            message.draw(sb, "Nice one!", (RussianFoolsDay.WIDTH/2) - (playBtn.getWidth()/2)+ 20  ,550);
         }
         bscore.draw(sb,"Your best score: " + bestscore.getInteger("bestScore"),(RussianFoolsDay.WIDTH/2) - (playBtn.getWidth()/2)+20  ,700);
         sb.end();

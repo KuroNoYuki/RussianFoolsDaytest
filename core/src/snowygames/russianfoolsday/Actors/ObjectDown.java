@@ -21,7 +21,7 @@ public class ObjectDown {
         height = emptydown.getHeight();
         width = emptydown.getWidth();
         height = 300;
-        width = 300;
+        width = 200;
     }
 
     public Vector3 getPosition() {
@@ -41,7 +41,7 @@ public class ObjectDown {
     }
     public void update(float dt){
         while (position.y < RussianFoolsDay.HEIGHT){
-            position.add(0, snowygames.russianfoolsday.circles.Redcircle.SCALE,0);
+           // position.add(0, snowygames.russianfoolsday.circles.Redcircle.SCALE,0);
         }
     }
     public void dispose(){

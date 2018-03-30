@@ -13,8 +13,8 @@ public class Matryoshka {
     private final Vector2 pos = new Vector2();
     private final Vector2 posIdle;
     public static Vector2 v = new Vector2(0f,380f);
-    private float width = 300;
-    private float height = 300;
+    private float width = 250;
+    private float height = 250;
     private Texture texture;
 
     public Matryoshka(Texture texture,Vector2 posIdle){
@@ -26,10 +26,15 @@ public class Matryoshka {
         pos.set(posIdle);
         state = State.IDLE;
     }
+    public float getWidth(){return width;};
+    public float getHeight(){return height;}
+    public void setWidth(float width){this.width = width;}
+    public void setHeight(float height){this.height = height;}
     public void setFlying(){state = State.FLYING;}
     public float getLeft(){
         return pos.x - width/2f;
     }
+    public void setDown(){pos.y = pos.y -5f;}
     public float getBottom(){return pos.y - height/2f;}
     public void update(float deltaTime,float worldTop){
         switch (state){

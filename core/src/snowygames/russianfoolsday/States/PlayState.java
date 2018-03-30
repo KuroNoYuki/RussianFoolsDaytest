@@ -37,7 +37,7 @@ public class PlayState extends State {
     private final Matryoshka[] heads = new Matryoshka[7];
     private int currentHead;
     private int currentDown;
-    private Vector2 headPlace = new Vector2(worldCenter.x ,worldCenter.y + 120);
+    private Vector2 headPlace = new Vector2(worldCenter.x ,worldCenter.y + 110);
 
     private Texture textureEmptyDown;
     private final Texture textureGreenCircle;
@@ -45,23 +45,24 @@ public class PlayState extends State {
     private final Texture textureRedCircle;
 
     private final Matryoshkadown[] downs = new Matryoshkadown[7];
-    private Vector2 downPlace = new Vector2(worldCenter.x,headPlace.y - 287);
+    private Vector2 downPlace = new Vector2(worldCenter.x,headPlace.y - 217);
     private static BitmapFont bscore;
 
     private Array<Redcircle> redcircles;
     private final PoolRedCircle poolRedCircle;
     private float secondbarrier;
     private float downheight;
+    private Texture background;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
         //redcircle = new Texture("redcircle.png");
-        textureEmptyHead = new Texture("Emptyheadcolored.png");
-        textureEmptyDown = new Texture("Emptydowncolored.png");
+        textureEmptyHead = new Texture("up.png");
+        textureEmptyDown = new Texture("down.png");
         textureGreenCircle = new Texture("greening.png");
         textureYellowCircle = new Texture("Yellowcircle.png");
         textureRedCircle = new Texture("redcircle.png");
-
+        background = new Texture("newBackGround.png");
         poolRedCircle = new PoolRedCircle(textureRedCircle);
 
         //redcirc[1] = new Redcircle(redcircle,(WIDTH /2),(RussianFoolsDay.HEIGHT/2));
@@ -93,16 +94,18 @@ public class PlayState extends State {
     public void handleinput() {
         if (Gdx.input.justTouched()) {
             //for (Redcircle redcircle: redcircles){redcircle.get}
+            niceShot();
+
+            //redcirc[1].youDidTooGood();
             for (int i = 0; i<redcirc.length; i++){
                 if (redcirc[i]!= null){
                     forcurrentredcirc();
                     if (redcirc[1].getHeight() < greenCircle.getHeight()) {
                         redcirc[i].setIdle();
+                        redcirc[1].scaleSpeed();
                         //if ( i==1)redcirc[i] = new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
                         SCORE++;
-                        if(redcirc[1].getHeight() < greenCircle.getHeight() & redcirc[1].getHeight()>= redcirc[1].getSecondBarrier()){
-                            SCORE = SCORE +2;
-                        }
+
                        /*if (SCORE % 5 == 0) {
                            redcirc[2] = new Redcircle((WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
                            redcirc[2].setDownBarrier(greenCircle.getHeight() * 5 / 8);
@@ -121,9 +124,12 @@ public class PlayState extends State {
                        if (++currentHead == heads.length - 1) currentHead = 0;
                        foregroundHead(currentHead);
                        heads[heads.length - 1].setFlying();
+                     //  headSize();
+
                       if (++currentDown == downs.length - 1) currentDown = 0;
                       foregroundDown(currentDown);
                       downs[downs.length - 1].setFlying();
+                     // downSize();
                 }
                 //if(redcirc[1].getHeight() >= greenCircle.getHeight()){
 
@@ -155,7 +161,30 @@ public class PlayState extends State {
                 gsm.push(new PlayAgainState(gsm));
             }*/
             }
+    public void headSize(){
+        for(int i = 0; i<heads.length; i++){
+            if(heads[i].getWidth()> 50){
+            heads[i].setHeight(heads[i].getHeight() - 5);
+            heads[i].setWidth(heads[i].getWidth()-5);
+            heads[i].setDown();
+            }
+        }
+    }
+    public void downSize(){
+        for (int i = 0; i< downs.length;i++){
+            if(downs[i].getWidth() >50){
+                downs[i].setHeight(downs[i].getHeight() - 5);
+                downs[i].setWidth(downs[i].getWidth() -5);
+                downs[i].setDown();
+            }
 
+        }
+    }
+    public void niceShot(){
+        if(redcirc[1].getHeight() < greenCircle.getHeight() & redcirc[1].getHeight()>= redcirc[1].getSecondBarrier()){
+            SCORE = SCORE +2;
+        }
+    }
 
     public void forcurrentredcirc(){
         if(redcirc[2]!= null){
@@ -216,10 +245,10 @@ public class PlayState extends State {
         }
 
 
-        if(redcirc[1].getHeight()<45) {
+        if(redcirc[1].getHeight()<redcirc[1].getDownBarrier()) {
 
-           // gsm.push(new PlayAgainState(gsm));
-            //Gdx.input.vibrate(200);
+            gsm.push(new PlayAgainState(gsm));
+            Gdx.input.vibrate(200);
         }
          }
 
@@ -229,6 +258,7 @@ public class PlayState extends State {
 
         sb.setProjectionMatrix(camera.combined);
         sb.begin();
+        sb.draw(background, 0,0, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
         Color color = sb.getColor();
         for(int i = 0; i < heads.length; i++)heads[i].draw(sb);
         for(int i = 0; i < downs.length;i++) downs[i].draw(sb);
@@ -242,10 +272,11 @@ public class PlayState extends State {
 
         color.a =oldAlpha;
         sb.setColor(color);
-        //redcirctwo.draw(sb);
         for(int i = 0; i< redcirc.length; i++){
-        if (redcirc[i]!= null)redcirc[i].draw(sb);
+            if (redcirc[i]!= null)redcirc[i].draw(sb);
         }
+        //redcirctwo.draw(sb);
+
         //redcirc[2].draw(sb);
         //redcirctwo.draw(sb);
         //sb.draw(redcirc.getRedcircle(),redcirc.getPosition().x - (redcirc.getWidth()/2),redcirc.getPosition().y -( redcirc.getHeight()/2),redcirc.getWidth(),redcirc.getHeight());
@@ -258,6 +289,7 @@ public class PlayState extends State {
     public void dispose() {
         //redcircle.dispose();
         yourScore.dispose();
+        background.dispose();
         textureEmptyHead.dispose();
         textureEmptyDown.dispose();
         textureGreenCircle.dispose();

@@ -18,7 +18,7 @@ public class MenuState extends State {
     //private Vector3 tmp;
     public MenuState(GameStateManager gsm) {
         super(gsm);
-        background = new Texture("bg.png");
+        background = new Texture("newBackGround.png");
         playBtn = new Texture("playbtn.png");
         camera.setToOrtho(false, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
         //textureBounds = new Rectangle(RussianFoolsDay.WIDTH/2 - playBtn.getWidth()/2,RussianFoolsDay.HEIGHT / 2, playBtn.getWidth(),playBtn.getHeight());

@@ -11,11 +11,14 @@ public class Redcircle extends Circle {
     private enum State {IDLE, FLYING}
 
     private State state = State.IDLE;
-    public static int SCALE;
+    private int SCALE;
     private Random random = new Random();
     int randomScale = random.nextInt(9) + 4;
     private float downBarrier;
     private float secondBarrier;
+    private int makeItHarder;
+    public int flyCalculator;
+    private int makeItEasyer;
 
     public Redcircle(Texture texture, float x, float y) {
         super(texture);
@@ -25,7 +28,11 @@ public class Redcircle extends Circle {
 
         width = 480;
         height = 480;
-        SCALE = -randomScale;
+        SCALE = - 400;
+        makeItHarder = -700;
+        makeItEasyer = 250;
+        flyCalculator = 0;
+        //SCALE = -randomScale;
         setIdle();
     }
 
@@ -40,7 +47,7 @@ public class Redcircle extends Circle {
     public float getSecondBarrier() {
         return secondBarrier;
     }
-
+    public float getDownBarrier(){return downBarrier;}
     public void setIdle() {
         width = 480;
         height = 480;
@@ -57,15 +64,24 @@ public class Redcircle extends Circle {
             return false;
         }
     }
+    public void youDidTooGood(){
+        if(flyCalculator % 10==0){
+        makeItHarder = makeItHarder - 50;
+        makeItEasyer = makeItEasyer - 50;
+    }};
+    public void scaleSpeed(){
+        SCALE = SCALE - 50;
+        if (SCALE <= makeItHarder){SCALE = SCALE +makeItEasyer;}
 
+    }
     public void update(float dt) {
         switch (state) {
             case IDLE:
                 break;
             case FLYING:
-                while (width > downBarrier) {
-                    width = width + SCALE;
-                    height = height + SCALE;
+                while (width > 1) {
+                    width = width + SCALE*dt;
+                    height = height + SCALE*dt;
                     //position.add(width/2,height/2,0);
                     return;
                 }

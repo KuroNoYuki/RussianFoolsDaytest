@@ -44,7 +44,7 @@ public class ObjectHead {
     }
     public void update(){
         while (position.y < RussianFoolsDay.HEIGHT){
-            position.add(0, - snowygames.russianfoolsday.circles.Redcircle.SCALE,0);
+            //position.add(0, - snowygames.russianfoolsday.circles.Redcircle.SCALE,0);
             return;
         }
         if ((position.y)+height> RussianFoolsDay.HEIGHT) {
