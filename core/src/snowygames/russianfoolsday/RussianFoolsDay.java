@@ -18,7 +18,7 @@ public class RussianFoolsDay extends ApplicationAdapter {
 	//public static final String TITLE = "Russain Fools' Day";
 	private GameStateManager gsm;
 	private SpriteBatch batch;
-	Music Calm;
+	private static Music Calm;
 
 
 	@Override
@@ -32,13 +32,24 @@ public class RussianFoolsDay extends ApplicationAdapter {
 		Calm.play();
 
 	}
+	public static boolean isItPlaying(){
+		if(Calm.isPlaying() == true){
+			return true;
+		}else return false;
+	}
+	public void offMusic(){
+		Calm.pause();
+	}
+	public void startMusic(){
+		Calm.setLooping(true);
+		Calm.play();
+	}
 
 	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		gsm.update(Gdx.graphics.getDeltaTime());
 		gsm.render(batch);
-
 
 	}
 	
