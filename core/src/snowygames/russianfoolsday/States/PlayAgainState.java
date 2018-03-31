@@ -83,7 +83,9 @@ public class PlayAgainState extends State {
     public void render(SpriteBatch sb) {
         //sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        sb.draw(background, 0,0, RussianFoolsDay.width,RussianFoolsDay.HEIGHT);
+        float bgWidth = RussianFoolsDay.width;
+        float bgHeight = bgWidth / (background.getWidth() / (float) background.getHeight());
+        sb.draw(background, 0,0, bgWidth,bgHeight);
         sb.draw(playBtn,(RussianFoolsDay.width /2) - (playBtn.getWidth()/2),RussianFoolsDay.HEIGHT / 2);
         sb.draw(balalaika,100, RussianFoolsDay.HEIGHT - 100,50,50);
         yourScore.draw(sb,"YOUR SCORE IS: " + PlayState.getScore(),(RussianFoolsDay.width /2) - (playBtn.getWidth()/2) - 60 ,RussianFoolsDay.HEIGHT / 1.25f);
