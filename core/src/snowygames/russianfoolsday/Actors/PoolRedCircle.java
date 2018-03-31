@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import snowygames.russianfoolsday.RussianFoolsDay;
 import snowygames.russianfoolsday.circles.Redcircle;
 
-import static snowygames.russianfoolsday.RussianFoolsDay.WIDTH;
+import static snowygames.russianfoolsday.RussianFoolsDay.width;
 
 /**
  * Created by eshas on 26.03.2018.
@@ -25,7 +25,7 @@ public class PoolRedCircle {
 
     public Redcircle get(){
         if(free.isEmpty()){
-            return new Redcircle(texture, (WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
+            return new Redcircle(texture, (width / 2), (RussianFoolsDay.HEIGHT / 2));
         } else {
             return free.remove((free.size() - 1));
 

@@ -3,6 +3,7 @@ package snowygames.russianfoolsday.States;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,7 +18,7 @@ import snowygames.russianfoolsday.Actors.PoolRedCircle;
 import snowygames.russianfoolsday.circles.YellowCircle;
 import snowygames.russianfoolsday.RussianFoolsDay;
 
-import static snowygames.russianfoolsday.RussianFoolsDay.WIDTH;
+import static snowygames.russianfoolsday.RussianFoolsDay.width;
 
 public class PlayState extends State {
 
@@ -30,8 +31,8 @@ public class PlayState extends State {
     BitmapFont yourScore;
     boolean shit;
     boolean newshit;
-    private final Vector2 worldCenter = new Vector2(RussianFoolsDay.WIDTH/2f,RussianFoolsDay.HEIGHT/2f);
-    private final int worldTop = RussianFoolsDay.HEIGHT - 1;
+    private final Vector2 worldCenter = new Vector2(RussianFoolsDay.width /2f,RussianFoolsDay.HEIGHT/2f);
+    private final float worldTop = RussianFoolsDay.HEIGHT - 1;
     private final int worldDown = 1;
     private Texture textureEmptyHead;
     private final Matryoshka[] heads = new Matryoshka[7];
@@ -54,8 +55,8 @@ public class PlayState extends State {
     private float downheight;
     private Texture background;
 
-    public PlayState(GameStateManager gsm) {
-        super(gsm);
+    public PlayState(GameStateManager gsm, OrthographicCamera camera) {
+        super(gsm, camera);
         //redcircle = new Texture("redcircle.png");
         textureEmptyHead = new Texture("up.png");
         textureEmptyDown = new Texture("down.png");
@@ -68,8 +69,8 @@ public class PlayState extends State {
         //redcirc[1] = new Redcircle(redcircle,(WIDTH /2),(RussianFoolsDay.HEIGHT/2));
        // camera.setToOrtho(false, WIDTH,RussianFoolsDay.HEIGHT);
 
-        greenCircle = new GreenCircle(textureGreenCircle, (WIDTH /2),(RussianFoolsDay.HEIGHT/2));
-        yellowCircle = new YellowCircle(textureYellowCircle, (WIDTH/2),(RussianFoolsDay.HEIGHT/2));
+        greenCircle = new GreenCircle(textureGreenCircle, (width /2),(RussianFoolsDay.HEIGHT/2));
+        yellowCircle = new YellowCircle(textureYellowCircle, (width /2),(RussianFoolsDay.HEIGHT/2));
 
         SCORE = 0;
         yourScore = new BitmapFont();
@@ -83,7 +84,7 @@ public class PlayState extends State {
         for (int i = 0; i < downs.length; i++){
             downs[i] = new Matryoshkadown(textureEmptyDown,downPlace);
         }
-        redcirc[1] = new Redcircle(textureRedCircle, (WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
+        redcirc[1] = new Redcircle(textureRedCircle, (width / 2), (RussianFoolsDay.HEIGHT / 2));
         redcirc[1].setDownBarrier(greenCircle.getHeight() * 5 / 8);
         redcirc[1].setSecondBarrier(greenCircle.getHeight()*5 / 8);
         redcirctwo = poolRedCircle.get();
@@ -134,7 +135,7 @@ public class PlayState extends State {
                 //if(redcirc[1].getHeight() >= greenCircle.getHeight()){
 
                 else{   Gdx.input.vibrate(200);
-                        gsm.push(new PlayAgainState(gsm));
+                        gsm.push(new PlayAgainState(gsm, camera));
                     }}}}
 
             /*if (redcirc[2].getHeight() < greenCircle.getHeight()) {
@@ -217,7 +218,7 @@ public class PlayState extends State {
         return score;
     }
     public void getRedcirctwo(){
-        redcirc[2] = new Redcircle(textureRedCircle, (WIDTH / 2), (RussianFoolsDay.HEIGHT / 2));
+        redcirc[2] = new Redcircle(textureRedCircle, (width / 2), (RussianFoolsDay.HEIGHT / 2));
         redcirc[2].setDownBarrier(greenCircle.getHeight() * 5 / 8);
         redcirc[1].setSecondBarrier(greenCircle.getHeight()*5 / 8);
         redcirc[2].setFlying();
@@ -247,7 +248,7 @@ public class PlayState extends State {
 
         if(redcirc[1].getHeight()<redcirc[1].getDownBarrier()) {
 
-            gsm.push(new PlayAgainState(gsm));
+            gsm.push(new PlayAgainState(gsm, camera));
             Gdx.input.vibrate(200);
         }
          }
@@ -258,7 +259,7 @@ public class PlayState extends State {
 
        // sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        sb.draw(background, 0,0, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
+        sb.draw(background, 0,0, RussianFoolsDay.width,RussianFoolsDay.HEIGHT);
         Color color = sb.getColor();
         for(int i = 0; i < heads.length; i++)heads[i].draw(sb);
         for(int i = 0; i < downs.length;i++) downs[i].draw(sb);

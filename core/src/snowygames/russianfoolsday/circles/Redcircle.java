@@ -23,7 +23,7 @@ public class Redcircle extends Circle {
     public Redcircle(Texture texture, float x, float y) {
         super(texture);
         pos.set(x, y);
-        pos.x = RussianFoolsDay.WIDTH / 2;
+        pos.x = RussianFoolsDay.width / 2;
         pos.y = RussianFoolsDay.HEIGHT / 2;
 
         width = 480;
