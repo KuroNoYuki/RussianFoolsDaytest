@@ -54,7 +54,9 @@ public class PlayState extends State {
     private float secondbarrier;
     private float downheight;
     private Texture background;
-
+    private Texture stand;
+    private float standLeft;
+    private float standBottom;
     public PlayState(GameStateManager gsm, OrthographicCamera camera) {
         super(gsm, camera);
         //redcircle = new Texture("redcircle.png");
@@ -65,7 +67,7 @@ public class PlayState extends State {
         textureRedCircle = new Texture("redcircle.png");
         background = new Texture("newBackGround.png");
         poolRedCircle = new PoolRedCircle(textureRedCircle);
-
+        stand = new Texture("podstavka.png");
         //redcirc[1] = new Redcircle(redcircle,(WIDTH /2),(RussianFoolsDay.HEIGHT/2));
        // camera.setToOrtho(false, WIDTH,RussianFoolsDay.HEIGHT);
 
@@ -73,11 +75,11 @@ public class PlayState extends State {
         yellowCircle = new YellowCircle(textureYellowCircle, (width /2),(RussianFoolsDay.HEIGHT/2));
 
         SCORE = 0;
-        yourScore = new BitmapFont();
-        yourScore.setColor(1,0.2f,0,1);
+        yourScore = new BitmapFont(Gdx.files.internal("playstatefont.fnt"));
+       // yourScore.setColor(1,0.2f,0,1);
         bestscore = Gdx.app.getPreferences("RussianFoolsDayscore");
-        bscore = new BitmapFont();
-        bscore.setColor(1,0.2f,0,1);
+        bscore = new BitmapFont(Gdx.files.internal("playstatefont.fnt"));
+        //bscore.setColor(1,0.2f,0,1);
         for (int i = 0; i < heads.length; i++){
             heads[i] = new Matryoshka(textureEmptyHead,headPlace);
         }
@@ -89,6 +91,8 @@ public class PlayState extends State {
         redcirc[1].setSecondBarrier(greenCircle.getHeight()*5 / 8);
         redcirctwo = poolRedCircle.get();
         redcirc[1].setFlying();
+        standLeft = downs[1].getLeft();
+        standBottom = downs[1].getBottom();
     }
 
     @Override
@@ -259,7 +263,10 @@ public class PlayState extends State {
 
        // sb.setProjectionMatrix(camera.combined);
         sb.begin();
-        sb.draw(background, 0,0, RussianFoolsDay.width,RussianFoolsDay.HEIGHT);
+        float bgWidth = RussianFoolsDay.width;
+        float bgHeight = bgWidth / (background.getWidth() / (float) background.getHeight());
+        sb.draw(background, 0,0, bgWidth,bgHeight);
+        sb.draw(stand, RussianFoolsDay.width/2 - 200, standBottom - 200,400,200  );
         Color color = sb.getColor();
         for(int i = 0; i < heads.length; i++)heads[i].draw(sb);
         for(int i = 0; i < downs.length;i++) downs[i].draw(sb);
@@ -282,6 +289,7 @@ public class PlayState extends State {
         //redcirctwo.draw(sb);
         //sb.draw(redcirc.getRedcircle(),redcirc.getPosition().x - (redcirc.getWidth()/2),redcirc.getPosition().y -( redcirc.getHeight()/2),redcirc.getWidth(),redcirc.getHeight());
         yourScore.draw(sb,"Your Score "+SCORE,20,RussianFoolsDay.HEIGHT - 40);
+
         bscore.draw(sb,"Your best score: "+bestscore.getInteger("bestScore"),20,RussianFoolsDay.HEIGHT - 70);
         sb.end();
 }

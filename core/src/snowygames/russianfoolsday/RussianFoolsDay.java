@@ -40,11 +40,11 @@ public class RussianFoolsDay extends ApplicationAdapter {
 		return musicCalm.isPlaying();
 	}
 
-	public void offMusic(){
+	public static void offMusic(){
 		musicCalm.pause();
 	}
 
-	public void startMusic(){
+	public static void startMusic(){
 		musicCalm.setLooping(true);
 		musicCalm.play();
 	}
