@@ -38,7 +38,7 @@ public class PlayAgainState extends State {
         background = new Texture("newBackGround.png");
         playBtn = new Texture("playbtn.png");
         balalaika = new Texture("balalaika.png");
-        camera.setToOrtho(false, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
+       // camera.setToOrtho(false, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
         yourScore = new BitmapFont();
         score = PlayState.getScore();
         yourScore.setColor(0,0,1,1);
@@ -59,10 +59,10 @@ public class PlayAgainState extends State {
     public void handleinput() {
         if(Gdx.input.justTouched()) {
             tmp.set(Gdx.input.getX(),Gdx.input.getY(),0);
-            camera.unproject(tmp);
+            //camera.unproject(tmp);
             textureBounds.set((RussianFoolsDay.WIDTH/2) - (playBtn.getWidth()/2),RussianFoolsDay.HEIGHT / 2, playBtn.getWidth(),playBtn.getHeight());
             soundSettings.set(100, RussianFoolsDay.HEIGHT - 100, 50,50);
-            if(soundSettings.contains(tmp.x,tmp.y)){
+           /* if(soundSettings.contains(tmp.x,tmp.y)){
                 if(RussianFoolsDay.isItPlaying() == true ){
                     RussianFoolsDay.startMusic()
                 }
@@ -70,7 +70,7 @@ public class PlayAgainState extends State {
                     RussianFoolsDay.Calm.play();
                     RussianFoolsDay.Calm.setLooping(true);
            x     }
-            }
+            }*/
             if (textureBounds.contains(tmp.x, tmp.y)) {
                 gsm.set(new PlayState(gsm));
             }
@@ -84,7 +84,7 @@ public class PlayAgainState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.setProjectionMatrix(camera.combined);
+        //sb.setProjectionMatrix(camera.combined);
         sb.begin();
         sb.draw(background, 0,0, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
         sb.draw(playBtn,(RussianFoolsDay.WIDTH/2) - (playBtn.getWidth()/2),RussianFoolsDay.HEIGHT / 2);

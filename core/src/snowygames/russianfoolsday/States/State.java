@@ -10,13 +10,13 @@ import com.badlogic.gdx.math.Vector3;
 import snowygames.russianfoolsday.RussianFoolsDay;
 
 public abstract class State {
-    protected OrthographicCamera camera;
+   // protected OrthographicCamera camera;
     protected Vector3 mouse;
     protected GameStateManager gsm;
 
     public State(GameStateManager gsm){
         this.gsm = gsm;
-        camera = new OrthographicCamera();
+        //camera = new OrthographicCamera();
         mouse = new Vector3();
     }
     public abstract void handleinput();

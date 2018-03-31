@@ -66,7 +66,7 @@ public class PlayState extends State {
         poolRedCircle = new PoolRedCircle(textureRedCircle);
 
         //redcirc[1] = new Redcircle(redcircle,(WIDTH /2),(RussianFoolsDay.HEIGHT/2));
-        camera.setToOrtho(false, WIDTH,RussianFoolsDay.HEIGHT);
+       // camera.setToOrtho(false, WIDTH,RussianFoolsDay.HEIGHT);
 
         greenCircle = new GreenCircle(textureGreenCircle, (WIDTH /2),(RussianFoolsDay.HEIGHT/2));
         yellowCircle = new YellowCircle(textureYellowCircle, (WIDTH/2),(RussianFoolsDay.HEIGHT/2));
@@ -256,7 +256,7 @@ public class PlayState extends State {
     @Override
     public void render(SpriteBatch sb) {
 
-        sb.setProjectionMatrix(camera.combined);
+       // sb.setProjectionMatrix(camera.combined);
         sb.begin();
         sb.draw(background, 0,0, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
         Color color = sb.getColor();

@@ -20,7 +20,7 @@ public class MenuState extends State {
         super(gsm);
         background = new Texture("newBackGround.png");
         playBtn = new Texture("playbtn.png");
-        camera.setToOrtho(false, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
+        //camera.setToOrtho(false, RussianFoolsDay.WIDTH/2,RussianFoolsDay.HEIGHT/2);
         //textureBounds = new Rectangle(RussianFoolsDay.WIDTH/2 - playBtn.getWidth()/2,RussianFoolsDay.HEIGHT / 2, playBtn.getWidth(),playBtn.getHeight());
     }
 
@@ -28,7 +28,7 @@ public class MenuState extends State {
     public void handleinput() {
         if(Gdx.input.justTouched()) {
             Vector3 tmp=new Vector3(Gdx.input.getX(),Gdx.input.getY(),0);
-            camera.unproject(tmp);
+            //camera.unproject(tmp);
             Rectangle textureBounds=new Rectangle((RussianFoolsDay.WIDTH/2) - (playBtn.getWidth()/2),RussianFoolsDay.HEIGHT / 2, playBtn.getWidth(),playBtn.getHeight());
             if (textureBounds.contains(tmp.x, tmp.y)) {
                 gsm.set(new PlayState(gsm));
@@ -43,7 +43,7 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.setProjectionMatrix(camera.combined);
+        //sb.setProjectionMatrix(camera.combined);
         sb.begin();
         sb.draw(background, 0,0, RussianFoolsDay.WIDTH,RussianFoolsDay.HEIGHT);
         sb.draw(playBtn,(RussianFoolsDay.WIDTH/2) - (playBtn.getWidth()/2),RussianFoolsDay.HEIGHT / 2);
