@@ -74,8 +74,8 @@ public class MenuState extends State {
         glySound.setText(sound,"Sound");
         sound.draw(sb,glySound,RussianFoolsDay.width - 65, RussianFoolsDay.HEIGHT - 75);
         GlyphLayout glyRusfool = new GlyphLayout();
-        glyRusfool.setText(rusfool, "RUSSIAN FOOL'S DAY");
-        rusfool.draw(sb, glyRusfool, RussianFoolsDay.width/2 - glyRusfool.width/2, (RussianFoolsDay.HEIGHT/2 + 250) );
+        glyRusfool.setText(rusfool, "Russian Fool's Day");
+        rusfool.draw(sb, glyRusfool, RussianFoolsDay.width/2 - glyRusfool.width/2, (RussianFoolsDay.HEIGHT/2 + 250));
         sb.end();
     }
 
