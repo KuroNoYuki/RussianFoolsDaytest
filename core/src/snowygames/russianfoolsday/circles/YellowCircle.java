@@ -2,7 +2,9 @@ package snowygames.russianfoolsday.circles;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class YellowCircle extends Circle {
+import snowygames.russianfoolsday.BaseSprite;
+
+public class YellowCircle extends BaseSprite {
 
     public YellowCircle(Texture texture, float x, float y) {
         super(texture);

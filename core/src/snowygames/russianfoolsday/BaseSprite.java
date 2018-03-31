@@ -1,18 +1,17 @@
-package snowygames.russianfoolsday.circles;
+package snowygames.russianfoolsday;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-@SuppressWarnings("WeakerAccess")
-public class Circle {
+public class BaseSprite {
 
-    final Vector2 pos = new Vector2();
-    float width;
-    float height;
-    Texture texture;
+    public final Vector2 pos = new Vector2();
+    protected float width;
+    protected float height;
+    protected Texture texture;
 
-    public Circle(Texture texture) {
+    public BaseSprite(Texture texture) {
         this.texture = texture;
     }
 

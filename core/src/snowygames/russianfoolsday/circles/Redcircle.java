@@ -5,8 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 import java.util.Random;
 
 import snowygames.russianfoolsday.RussianFoolsDay;
+import snowygames.russianfoolsday.BaseSprite;
 
-public class Redcircle extends Circle {
+public class Redcircle extends BaseSprite {
 
     private enum State {IDLE, FLYING}
 
