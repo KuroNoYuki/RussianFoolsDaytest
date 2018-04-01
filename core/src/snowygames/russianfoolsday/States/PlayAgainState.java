@@ -91,7 +91,7 @@ public class PlayAgainState extends State {
                     RussianFoolsDay.startMusic()
                 }
                 if(RussianFoolsDay.Calm.isPlaying() == false){
-                    RussianFoolsDay.Calm.play();
+                    RussianFoolsDay.Calm.play();sdd
                     RussianFoolsDay.Calm.setLooping(true);
            x     }
             }*/
